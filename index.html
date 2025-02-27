@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrillStudio!</title>
+    <script type="module" src="src/js/main.js"></script>
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>DrillStudio</h1>
+    </header>
+    <nav>
+      <form id="project-controls">
+        <label for="project-name">Name:</label>
+        <input id="project-name" type="text">
+        <label for="project-select">Project:</label>
+        <select id="project-select">
+          <option>Select one</option>
+        </select>
+      </form>
+    </nav>
+    <main>
+      <div id="field"></div>
+      <aside>
+        <h2>Inspector</h2>
+        <form id="field-controls">
+          <h3>Field Settings</h3>
+          <label for="field-columns">Lines past the 50</label>
+          <input
+            name="columns"
+            type="number"
+            min="1"
+            step="1"
+            value="3"
+            id="field-columns"
+          />
+          <label for="field-rows">Lines from the front</label>
+          <input
+            name="rows"
+            type="number"
+            min="1"
+            step="1"
+            value="4"
+            id="field-rows"
+          />
+        </form>
+        <form id="add-player">
+          <h3>Add Player</h3>
+          <label for="new-player-label">Label</label>
+          <input name="label" id="new-player-label" type="text" required />
+          <button type="submit">Add Player(s)</button>
+        </form>
+        <form id="edit-player">
+          <label for="edit-player-label">Label</label>
+          <input name="label" id="edit-player-label" type="text" required />
+          <p id="left-to-right-display"></p>
+          <p id="front-to-back-display"></p>
+        </form>
+        <form id="set-controls">
+          <h3>Set Properties</h3>
+          <input id="previous-set" type="button" value="<" />
+          <input id="next-set" type="button" value=">" />
+          <input id="new-set" type="button" value="+" />
+          <label for="set-number">set</label>
+          <input
+            id="set-number"
+            name="set"
+            type="number"
+            step="1"
+            min="0"
+            value="0"
+          />
+          <label for="counts">Counts</label>
+          <input id="counts" name="counts" type="number" step="1" value="0" />
+          <label for="measure">Measure</label>
+          <input id="measure" name="measure" type="number" step="1" value="0" />
+        </form>
+        <form id="export-options">
+          <h3>Export Dot Sheets</h3>
+          <input type="button" id="export" value="export" />
+        </form>
+      </aside>
+    </main>
+  </body>
+</html>
