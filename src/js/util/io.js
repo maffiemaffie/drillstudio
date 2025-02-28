@@ -2,16 +2,32 @@ import { Grid, Player, Set } from "../components/index.js";
 
 const prefix = "drillstudio-";
 
+/**
+ * Overwrites all drill studio data in local storage
+ * @param {Object} newData The data to load to local storage
+ */
 const updateData = (newData) => {
   localStorage.setItem(prefix + "data", JSON.stringify(newData));
 };
 
+/**
+ * Retrieves all drill studio data in local storage
+ * @returns the data
+ */
 const getData = () => {
   const stringData = localStorage.getItem(prefix + "data");
   if (stringData !== null) return JSON.parse(stringData);
-  return { projects: {} };
+  
+  const data = { projects: {} };
+  updateData(data);
+  return getData();
 };
 
+/**
+ * Retrieves an existing project's data
+ * @param {string} name The name of the project
+ * @returns the project data
+ */
 export const getProject = (name) => {
   const data = getData();
   const project = data.projects[name];
@@ -48,17 +64,29 @@ export const getProject = (name) => {
   };
 };
 
+/**
+ * Retrieves a list of names of all existing projects
+ * @returns the names
+ */
 export const getProjects = () => {
   const data = getData();
   return Object.keys(data.projects);
 };
 
+/**
+ * Overwrites the data for an existing project in local storage
+ * @param {Object} project The project data
+ */
 export const updateProject = (project) => {
   const data = getData();
   data.projects[project.name] = project;
   updateData(data);
 };
 
+/**
+ * Saves a new project to local storage
+ * @param {Object} project The project data
+ */
 export const createProject = (project) => {
   const data = getData();
   data.projects[project.name] = project;

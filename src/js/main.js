@@ -1,13 +1,11 @@
-import * as controls from "./controls.js";
 import * as components from "./components/index.js";
-import * as router from "./router.js";
-import * as model from "./model.js";
-import * as viewer from "./viewer.js";
+import * as controls from "./controls.js";
 import * as io from "./util/io.js";
+import * as model from "./model.js";
+import * as router from "./router.js";
+import * as viewer from "./viewer.js";
 
 (() => {  
-  const projects = io.getProjects();
-
   model.loadProjectData({
     currentSet: null,
     grid: components.Grid.fromJSON({
@@ -23,8 +21,9 @@ import * as io from "./util/io.js";
       counts: 8,
     })],
   });
-  io.updateProject(model);
+  io.updateProject(model.getAll());
 
+  const projects = io.getProjects();
   controls.updateProjects(model.getName(), projects);
   controls.setSet(model.getCurrentSet());
   controls.setSelected(model.getSelected(), model.getCurrentSet().number);
