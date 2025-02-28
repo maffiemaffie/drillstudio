@@ -23,6 +23,7 @@ import * as io from "./util/io.js";
       counts: 8,
     })],
   });
+  io.updateProject(model);
 
   controls.updateProjects(model.getName(), projects);
   controls.setSet(model.getCurrentSet());
