@@ -74,7 +74,7 @@ export const callbacks = {
   },
 };
 
-export const setSelected = (player, set) => {
+export const setSelected = (player, setNumber) => {
   const form = document.querySelector("#edit-player");
   const labelInput = document.querySelector("#edit-player input[name=label]");
   const fieldControls = document.querySelector("#field-controls");
@@ -91,7 +91,7 @@ export const setSelected = (player, set) => {
 
   labelInput.value = player.label;
 
-  setPosition(player.getLeftToRight(set), player.getFrontToBack(set));
+  setPosition(player.getLeftToRight(setNumber), player.getFrontToBack(setNumber));
 };
 
 export const setPosition = (x, y) => {

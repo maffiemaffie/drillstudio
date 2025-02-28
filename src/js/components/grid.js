@@ -7,6 +7,12 @@ export class Grid {
     this.columns = columns * 2 + 1;
   }
 
+  static fromJSON({rows, columns}) {
+    const newGrid = new Grid(rows, 0);
+    newGrid.columns = columns;
+    return newGrid;
+  }
+
   changeRows(newRows) {
     this.rows = newRows;
   }

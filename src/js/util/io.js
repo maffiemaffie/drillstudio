@@ -1,4 +1,4 @@
-import { Player, Set } from "../components/index.js";
+import { Grid, Player, Set } from "../components/index.js";
 
 const prefix = "drillstudio-";
 
@@ -36,12 +36,15 @@ export const getProject = (name) => {
     (set) => set.number === project.currentSet.number
   );
 
+  const grid = Grid.fromJSON(project.grid);
+
   return {
     currentSet,
     name: project.name,
     players,
     selected,
     sets,
+    grid,
   };
 };
 
