@@ -245,15 +245,18 @@ controls.callbacks.onExportButtonPressed = () => {
 
 /**
  * Load in a pre-saved project
- * @param {Object} project The data of the project
+ * @param {string} name The name of the opened project
  */
-controls.callbacks.onProjectOpened = (project) => {
+controls.callbacks.onProjectOpened = (name) => {
   io.updateProject(model.getAll());
-  const openedProject = io.getProject(project);
-  model.loadProjectData(openedProject);
+
+  io.setOpenProject(name);
+  model.loadProjectData(io.getOpenProject());
 
   const projects = io.getProjects();
   controls.updateProjects(model.getName(), projects);
+
+  update();
 };
 
 /**
@@ -261,9 +264,16 @@ controls.callbacks.onProjectOpened = (project) => {
  * @param {string} name The new name
  */
 controls.callbacks.onProjectRenamed = (name) => {
+  const oldName = model.getName();
+  
   model.renameProject(name);
-  io.updateProject(model.getAll());
+  io.updateProject(model.getAll(), oldName);
+  io.setOpenProject(name);
 
   const projects = io.getProjects();
-  controls.updateProjects(model.getName(), projects);
+  controls.updateProjects(name, projects);
 };
+
+controls.callbacks.onProjectCreated = (name) => {
+  io.createProject(io.makeDefaultProject(name));
+}

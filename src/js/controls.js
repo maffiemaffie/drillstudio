@@ -1,5 +1,3 @@
-import { config } from "./drawers/config.js";
-
 export const callbacks = {
   onPlayerAdded: (playerData) => {
     console.log(Object.fromEntries(playerData.entries()));
@@ -72,6 +70,9 @@ export const callbacks = {
   onProjectRenamed: (name) => {
     console.log("project renamed to " + name);
   },
+  onProjectCreated: (name) => {
+    console.log("new project created: " + name);
+  },
 };
 
 export const setSelected = (player, setNumber) => {
@@ -91,7 +92,10 @@ export const setSelected = (player, setNumber) => {
 
   labelInput.value = player.label;
 
-  setPosition(player.getLeftToRight(setNumber), player.getFrontToBack(setNumber));
+  setPosition(
+    player.getLeftToRight(setNumber),
+    player.getFrontToBack(setNumber)
+  );
 };
 
 export const setPosition = (x, y) => {
@@ -119,14 +123,14 @@ export const updateProjects = (opened, projectNames) => {
   projectSelect.innerHTML = "";
 
   for (const name of projectNames) {
-    projectSelect.appendChild(new Option(name, name, false, opened.localeCompare(name) === 0));
+    projectSelect.appendChild(new Option(name, name, false, opened === name));
   }
-}
+};
 
 const updateName = (name) => {
   const projectName = document.querySelector("#project-name");
   projectName.value = name;
-}
+};
 
 const setBoundsRows = (rows) => {
   const yInput = document.querySelector("#edit-player input[name=y]");
@@ -146,6 +150,7 @@ const setBoundsColumns = (columns) => {
   const rowsInput = document.querySelector("#field-rows");
   const columnsInput = document.querySelector("#field-columns");
   const addPlayer = document.querySelector("#add-player");
+  const editPlayer = document.querySelector("#edit-player");
   const editPlayerFields = document.querySelectorAll("#edit-player input");
   const previousSetButton = document.querySelector("#previous-set");
   const nextSetButton = document.querySelector("#next-set");
@@ -155,8 +160,12 @@ const setBoundsColumns = (columns) => {
     "#set-controls input[type=number]"
   );
   const exportButton = document.querySelector("#export");
+  const projectControls = document.querySelector("#project-controls");
   const projectSelect = document.querySelector("#project-select");
   const projectName = document.querySelector("#project-name");
+  const newProjectControls = document.querySelector("#new-project-controls");
+  const newProjectName = document.querySelector("#new-project-name");
+  const newProjectButton = document.querySelector("#new-project-button");
 
   setSelected(null, 0);
 
@@ -179,6 +188,10 @@ const setBoundsColumns = (columns) => {
     return false;
   });
 
+  editPlayer.addEventListener("submit", (e) => {
+    e.preventDefault();
+    return false;
+  });
   for (const field of editPlayerFields) {
     field.addEventListener("change", (e) => {
       callbacks.onPlayerEdited(new FormData(e.target.form));
@@ -284,11 +297,25 @@ const setBoundsColumns = (columns) => {
     callbacks.onExportButtonPressed();
   });
 
+  projectControls.addEventListener("submit", (e) => {
+    e.preventDefault();
+    return false;
+  });
   projectSelect.addEventListener("change", (e) => {
     callbacks.onProjectOpened(e.target.value);
   });
 
   projectName.addEventListener("change", (e) => {
     callbacks.onProjectRenamed(e.target.value);
+  });
+
+  newProjectControls.addEventListener("submit", (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  newProjectButton.addEventListener("click", () => {
+    callbacks.onProjectCreated(newProjectName.value);
+    callbacks.onProjectOpened(newProjectName.value);
   });
 })();
