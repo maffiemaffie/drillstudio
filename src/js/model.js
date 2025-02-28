@@ -12,6 +12,7 @@ let projectData;
  */
 export const loadProjectData = (data) => {
   projectData = data;
+  projectData.currentSet ??= projectData.sets[0];
 };
 
 /**
