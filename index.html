@@ -12,24 +12,32 @@
     <header>
       <h1>DrillStudio</h1>
     </header>
-    <nav>
-      <form id="project-controls">
-        <label for="project-name">Name:</label>
-        <input id="project-name" type="text">
-        <label for="project-select">Project:</label>
-        <select id="project-select">
-          <option>Select one</option>
-        </select>
-      </form>
-      <form id="new-project-controls">
-        <label for="new-project-name">New Project:</label>
-        <input id="new-project-name" type="text" required>
-        <button id="new-project-button" type="submit">Create</button>
-      </form>
-    </nav>
     <main>
       <div id="field"></div>
-      <aside>
+      <div id="project-window">
+        <form id="project-controls">
+          <label for="project-name">Name:</label>
+          <input id="project-name" type="text" />
+          <label for="project-select">Project:</label>
+          <select id="project-select">
+            <option>Select one</option>
+          </select>
+        </form>
+        <form id="new-project-controls">
+          <label for="new-project-name">New Project:</label>
+          <input id="new-project-name" type="text" required />
+          <button id="new-project-button" type="submit">Create</button>
+        </form>
+        <form id="project-settings">
+          <label for="tempo">Tempo (beta):</label>
+          <input id="tempo" type="number">
+        </form>
+        <form id="export-options">
+          <h3>Export Dot Sheets</h3>
+          <input type="button" id="export" value="export" />
+        </form>
+      </div>
+      <aside id="inspector">
         <h2>Inspector</h2>
         <form id="field-controls">
           <h3>Field Settings</h3>
@@ -82,10 +90,7 @@
           <input id="counts" name="counts" type="number" step="1" value="0" />
           <label for="measure">Measure</label>
           <input id="measure" name="measure" type="number" step="1" value="0" />
-        </form>
-        <form id="export-options">
-          <h3>Export Dot Sheets</h3>
-          <input type="button" id="export" value="export" />
+          <input id="animate-next-set" type="button" value="play 1 set (beta)" />
         </form>
       </aside>
     </main>

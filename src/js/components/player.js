@@ -4,22 +4,22 @@ export class Player {
   constructor(label, sets, startingDot) {
     this.label = label;
     for (let i = 0; i < sets; i++) {
-      this.dots.push(startingDot);
+      this.dots.push({ x: startingDot.x, y: startingDot.y });
     }
   }
 
-  static fromJSON({dots, label}) {
+  static fromJSON({ dots, label }) {
     const newPlayer = new Player(label, []);
     newPlayer.dots = dots;
     return newPlayer;
   }
 
-  changeSet(set, {x, y}) {
-    this.dots[set] = {x, y};
+  changeSet(set, { x, y }) {
+    this.dots[set] = { x, y };
   }
 
   addSet(x, y) {
-    this.dots.push({x, y});
+    this.dots.push({ x, y });
   }
 
   getLeftToRight(set) {
@@ -33,13 +33,17 @@ export class Player {
     }
 
     if (Math.abs(this.dots[set].x) % 8 <= 4) {
-      const closestLine = 50 - Math.floor(Math.abs(this.dots[set].x) * 0.125) * 5;
+      const closestLine =
+        50 - Math.floor(Math.abs(this.dots[set].x) * 0.125) * 5;
       return `${Math.abs(this.dots[set].x) % 8} outside ${closestLine} ${side}`;
     }
 
-    const closestLine = 50 - Math.floor(Math.abs(this.dots[set].x) * 0.125) * 5 - 5;
-    return `${8 - (Math.abs(this.dots[set].x) % 8)} inside ${closestLine} ${side}`;
-  };
+    const closestLine =
+      50 - Math.floor(Math.abs(this.dots[set].x) * 0.125) * 5 - 5;
+    return `${
+      8 - (Math.abs(this.dots[set].x) % 8)
+    } inside ${closestLine} ${side}`;
+  }
 
   getFrontToBack(set) {
     if (this.dots[set].y % 8 === 0) {
@@ -58,5 +62,5 @@ export class Player {
       "A".charCodeAt(0) + Math.floor(Math.abs(this.dots[set].y) * 0.125 + 1)
     );
     return `${8 - (Math.abs(this.dots[set].y) % 8)} in front of ${closestLine}`;
-  };
+  }
 }

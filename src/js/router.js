@@ -277,3 +277,15 @@ controls.callbacks.onProjectRenamed = (name) => {
 controls.callbacks.onProjectCreated = (name) => {
   io.createProject(io.makeDefaultProject(name));
 }
+
+// ===================================  
+// =========== Animation =============  
+// ===================================  
+
+controls.callbacks.onAnimationStepForward = (progress) => {
+  viewer.updateAnimation(model.getAll(), progress);
+}
+
+controls.callbacks.onAnimationStop = () => {
+  controls.setSet(model.getCurrentSet().number + 1);
+}

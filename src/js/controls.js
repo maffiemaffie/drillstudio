@@ -73,6 +73,15 @@ export const callbacks = {
   onProjectCreated: (name) => {
     console.log("new project created: " + name);
   },
+  onAnimationStepForward: (progress) => {
+    console.log("stepping animation forward");
+  },
+  onAnimationStart: () => {
+    console.log("start animation");
+  },
+  onAnimationStop: () => {
+    console.log("end animation");
+  },
 };
 
 export const setSelected = (player, setNumber) => {
@@ -166,6 +175,7 @@ const setBoundsColumns = (columns) => {
   const newProjectControls = document.querySelector("#new-project-controls");
   const newProjectName = document.querySelector("#new-project-name");
   const newProjectButton = document.querySelector("#new-project-button");
+  const animateNextSetButton = document.querySelector("#animate-next-set");
 
   setSelected(null, 0);
 
@@ -317,5 +327,43 @@ const setBoundsColumns = (columns) => {
   newProjectButton.addEventListener("click", () => {
     callbacks.onProjectCreated(newProjectName.value);
     callbacks.onProjectOpened(newProjectName.value);
+  });
+
+  animateNextSetButton.addEventListener("click", () => {
+    const counts = parseInt(document.querySelector("#counts").value);
+    const tempo = parseInt(document.querySelector("#tempo").value);
+
+    if (!counts) {
+      callbacks.onAnimationStop();
+      return;
+    }
+
+    const forms = document.querySelectorAll("form");
+    for (const form of forms) {
+      form.setAttribute("disabled", true);
+    }
+
+    callbacks.onAnimationStart();
+
+    const countDuration = 60000 / tempo;
+    const duration = countDuration * counts;
+    const durationFrames = duration * 0.001 * 30;
+
+    setTimeout(() => {
+      callbacks.onAnimationStop();
+      for (const form of forms) {
+        form.removeAttribute("disabled");
+      }
+    }, duration);
+
+    let frames = 0;
+    const anim = setInterval(() => {
+      frames++;
+      callbacks.onAnimationStepForward(frames / durationFrames);
+
+      if (frames >= durationFrames) {
+        clearInterval(anim);
+      }
+    }, 1000 / 30);
   });
 })();
