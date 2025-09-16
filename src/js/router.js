@@ -2,7 +2,8 @@ import * as model from "./model.js";
 import * as controls from "./controls.js";
 import * as viewer from "./viewer.js";
 import * as io from "./util/io.js";
-import * as fileExport from "./util/export.js"
+import * as pdfExport from "./util/export.js";
+import * as fileIO from "./util/file-io.js";
 
 export const update = () => {
   const data = model.getAll();
@@ -236,7 +237,21 @@ controls.callbacks.onMetaDownKeyPressed = () => {
  * Export full project to dot sheets
  */
 controls.callbacks.onExportButtonPressed = () => {
-  fileExport.exportCSV(model.getAll());
+  pdfExport.exportCSV(model.getAll());
+};
+
+/**
+ * Export full project to disk
+ */
+controls.callbacks.onSaveFile = () => {
+  fileIO.saveToFile(model.getAll());
+}
+
+/**
+ * Load project from disk
+ */
+controls.callbacks.onOpenFile = (file) => {
+  fileIO.loadFromFile(file);
 };
 
 // ===================================
