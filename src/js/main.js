@@ -11,6 +11,7 @@ import * as viewer from "./viewer.js";
   controls.updateProjects(model.getName(), projects);
   controls.setSet(model.getCurrentSet());
   controls.setSelected(model.getSelected(), model.getCurrentSet().number);
+  controls.setTempo(model.getTempo());
 
   router.update();
   viewer.mountCanvas();

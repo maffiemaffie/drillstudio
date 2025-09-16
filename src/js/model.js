@@ -55,6 +55,23 @@ export const renameProject = (name) => {
   projectData.name = name;
 }
 
+/**
+ * Gets the tempo of the opened project
+ * @param {Number} tempo The tempo
+ * @returns the tempo
+ */
+export const getTempo = (tempo) => {
+  return projectData.tempo;
+}
+
+/**
+ * Sets the animating tempo of the opened project
+ * @param {Number} tempo the new tempo
+ */
+export const setTempo = (tempo) => {
+  projectData.tempo = tempo;
+}
+
 // ===================================
 // ========= Move Player =============
 // ===================================

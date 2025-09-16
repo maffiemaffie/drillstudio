@@ -289,3 +289,11 @@ controls.callbacks.onAnimationStepForward = (progress) => {
 controls.callbacks.onAnimationStop = () => {
   controls.setSet(model.getCurrentSet().number + 1);
 }
+
+// ===================================  
+// ======== Project Settings =========  
+// ===================================  
+
+controls.callbacks.onTempoChanged = (tempo) => {
+  model.setTempo(tempo);
+}

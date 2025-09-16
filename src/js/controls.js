@@ -82,6 +82,9 @@ export const callbacks = {
   onAnimationStop: () => {
     console.log("end animation");
   },
+  onTempoChanged: (tempo) => {
+    console.log("tempo changed to " + tempo);
+  }
 };
 
 export const setSelected = (player, setNumber) => {
@@ -136,6 +139,11 @@ export const updateProjects = (opened, projectNames) => {
   }
 };
 
+export const setTempo = (tempo) => {
+  const tempoField = document.querySelector("#tempo");
+  tempoField.value = tempo;
+}
+
 const updateName = (name) => {
   const projectName = document.querySelector("#project-name");
   projectName.value = name;
@@ -153,6 +161,7 @@ const setBoundsColumns = (columns) => {
   xInput.setAttribute("max", 8 * columns);
   xInput.setAttribute("min", -8 * columns);
 };
+
 
 (() => {
   const grid = document.querySelector("#field");
@@ -176,6 +185,7 @@ const setBoundsColumns = (columns) => {
   const newProjectName = document.querySelector("#new-project-name");
   const newProjectButton = document.querySelector("#new-project-button");
   const animateNextSetButton = document.querySelector("#animate-next-set");
+  const tempo = document.querySelector("#tempo");
 
   setSelected(null, 0);
 
@@ -328,6 +338,10 @@ const setBoundsColumns = (columns) => {
     callbacks.onProjectCreated(newProjectName.value);
     callbacks.onProjectOpened(newProjectName.value);
   });
+
+  tempo.addEventListener("click", (tempo) => {
+    callbacks.onTempoChanged(tempo);
+  })
 
   animateNextSetButton.addEventListener("click", () => {
     const counts = parseInt(document.querySelector("#counts").value);
