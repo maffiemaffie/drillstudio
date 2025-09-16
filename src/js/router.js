@@ -88,7 +88,8 @@ controls.callbacks.onSetAdded = () => {
 controls.callbacks.onSetEdited = (setData) => {
   const measure = setData.get("measure");
   const counts = setData.get("counts");
-  model.editSet(measure, counts);
+  const tempo = setData.get("tempo");
+  model.editSet(measure, counts, tempo);
 };
 
 // ===================================
@@ -303,4 +304,12 @@ controls.callbacks.onAnimationStepForward = (progress) => {
 
 controls.callbacks.onAnimationStop = () => {
   controls.setSet(model.getCurrentSet().number + 1);
+}
+
+// ===================================  
+// ======== Project Settings =========  
+// ===================================  
+
+controls.callbacks.onTempoChanged = (tempo) => {
+  model.setTempo(tempo);
 }

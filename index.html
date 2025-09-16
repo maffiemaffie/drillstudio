@@ -28,16 +28,12 @@
           <input id="new-project-name" type="text" required />
           <button id="new-project-button" type="submit">Create</button>
         </form>
-        <form id="project-settings">
-          <label for="tempo">Tempo (beta):</label>
-          <input id="tempo" type="number" />
+        <!-- <form id="project-settings"></form> -->
+        <form id="export-options">
+          <h3>Export Dot Sheets</h3>
+          <input type="button" id="export" value="export" />
         </form>
-        <div>
-          <form id="export-options">
-            <h3>Export Dot Sheets</h3>
-            <input type="button" id="export" value="export" />
-          </form>
-          <form id="file-io">
+        <form id="file-io">
             <h3>Save/Load Project</h3>
             <label for="open-file">Open existing project: </label>
             <input type="file" id="open-file" accept=".elia" />
@@ -103,6 +99,8 @@
             type="button"
             value="play 1 set (beta)"
           />
+          <label for="tempo">Tempo:</label>
+          <input id="tempo" name="tempo" type="number" />
         </form>
       </aside>
     </main>

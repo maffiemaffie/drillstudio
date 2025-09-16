@@ -60,7 +60,8 @@ export const getProject = (name) => {
 
   return {
     currentSet,
-    name: project.name,
+    name: project?.name ?? "My First Project",
+    tempo: project?.tempo ?? 120,
     players,
     selected,
     sets,
@@ -156,6 +157,7 @@ export const makeDefaultProject = (name) => {
       rows: 4,
     }),
     name,
+    tempo: 120,
     players: [],
     selected: null,
     sets: [
