@@ -28,11 +28,18 @@
           <input id="new-project-name" type="text" required />
           <button id="new-project-button" type="submit">Create</button>
         </form>
-        <form id="project-settings"></form>
+        <!-- <form id="project-settings"></form> -->
         <form id="export-options">
           <h3>Export Dot Sheets</h3>
           <input type="button" id="export" value="export" />
         </form>
+        <form id="file-io">
+            <h3>Save/Load Project</h3>
+            <label for="open-file">Open existing project: </label>
+            <input type="file" id="open-file" accept=".elia" />
+            <input type="button" id="save-file" value="Save to disk" />
+          </form>
+        </div>
       </div>
       <aside id="inspector">
         <h2>Inspector</h2>
