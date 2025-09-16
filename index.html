@@ -28,10 +28,7 @@
           <input id="new-project-name" type="text" required />
           <button id="new-project-button" type="submit">Create</button>
         </form>
-        <form id="project-settings">
-          <label for="tempo">Tempo (beta):</label>
-          <input id="tempo" type="number">
-        </form>
+        <form id="project-settings"></form>
         <form id="export-options">
           <h3>Export Dot Sheets</h3>
           <input type="button" id="export" value="export" />
@@ -90,7 +87,13 @@
           <input id="counts" name="counts" type="number" step="1" value="0" />
           <label for="measure">Measure</label>
           <input id="measure" name="measure" type="number" step="1" value="0" />
-          <input id="animate-next-set" type="button" value="play 1 set (beta)" />
+          <input
+            id="animate-next-set"
+            type="button"
+            value="play 1 set (beta)"
+          />
+          <label for="tempo">Tempo:</label>
+          <input id="tempo" name="tempo" type="number" />
         </form>
       </aside>
     </main>

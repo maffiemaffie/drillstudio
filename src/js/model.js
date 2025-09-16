@@ -56,20 +56,19 @@ export const renameProject = (name) => {
 }
 
 /**
- * Gets the tempo of the opened project
- * @param {Number} tempo The tempo
+ * Gets the tempo of the current set
  * @returns the tempo
  */
-export const getTempo = (tempo) => {
-  return projectData.tempo;
+export const getTempo = () => {
+  return projectData.currentSet.tempo;
 }
 
 /**
- * Sets the animating tempo of the opened project
+ * Sets the animating tempo of the current set
  * @param {Number} tempo the new tempo
  */
 export const setTempo = (tempo) => {
-  projectData.tempo = tempo;
+  projectData.currentSet.tempo = tempo;
 }
 
 // ===================================
@@ -352,8 +351,9 @@ export const createSet = () => {
  * Updates a set after edited in the inspector
  * @param {FormData} setData FormData containing set data inputs
  */
-export const editSet = (measure, counts) => {
+export const editSet = (measure, counts, tempo) => {
   projectData.currentSet.measure = measure;
   projectData.currentSet.counts = counts;
+  projectData.currentSet.tempo = tempo;
 };
 

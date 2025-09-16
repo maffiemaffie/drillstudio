@@ -1,3 +1,5 @@
+import * as model from "./model.js";
+
 export const callbacks = {
   onPlayerAdded: (playerData) => {
     console.log(Object.fromEntries(playerData.entries()));
@@ -122,10 +124,12 @@ export const setSet = (setNumber) => {
   const setInput = document.querySelector("#set-number");
   const countsInput = document.querySelector("#counts");
   const measureInput = document.querySelector("#measure");
+  const tempoInput = document.querySelector("#tempo");
   const set = callbacks.onSetChanged(setNumber);
   setInput.value = set.number;
   countsInput.value = set.counts;
   measureInput.value = set.measure;
+  tempoInput.value = set.tempo;
 };
 
 export const updateProjects = (opened, projectNames) => {
@@ -139,10 +143,10 @@ export const updateProjects = (opened, projectNames) => {
   }
 };
 
-export const setTempo = (tempo) => {
-  const tempoField = document.querySelector("#tempo");
-  tempoField.value = tempo;
-}
+// export const setTempo = (tempo) => {
+//   const tempoInput = document.querySelector("#tempo");
+//   tempoInput.value = tempo;
+// }
 
 const updateName = (name) => {
   const projectName = document.querySelector("#project-name");
@@ -185,7 +189,6 @@ const setBoundsColumns = (columns) => {
   const newProjectName = document.querySelector("#new-project-name");
   const newProjectButton = document.querySelector("#new-project-button");
   const animateNextSetButton = document.querySelector("#animate-next-set");
-  const tempo = document.querySelector("#tempo");
 
   setSelected(null, 0);
 
@@ -339,13 +342,20 @@ const setBoundsColumns = (columns) => {
     callbacks.onProjectOpened(newProjectName.value);
   });
 
-  tempo.addEventListener("click", (tempo) => {
-    callbacks.onTempoChanged(tempo);
-  })
+  // tempo.addEventListener("click", (tempo) => {
+  //   callbacks.onTempoChanged(tempo);
+  // })
 
   animateNextSetButton.addEventListener("click", () => {
     const counts = parseInt(document.querySelector("#counts").value);
     const tempo = parseInt(document.querySelector("#tempo").value);
+    const currentSet = model.getCurrentSet().number;
+    const totalSets = model.getAll().sets.length;
+
+    console.log(currentSet, totalSets);
+    if (currentSet + 1 >= totalSets) {
+      return;
+    }
 
     if (!counts) {
       callbacks.onAnimationStop();

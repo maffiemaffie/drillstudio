@@ -87,7 +87,8 @@ controls.callbacks.onSetAdded = () => {
 controls.callbacks.onSetEdited = (setData) => {
   const measure = setData.get("measure");
   const counts = setData.get("counts");
-  model.editSet(measure, counts);
+  const tempo = setData.get("tempo");
+  model.editSet(measure, counts, tempo);
 };
 
 // ===================================
