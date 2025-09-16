@@ -30,12 +30,20 @@
         </form>
         <form id="project-settings">
           <label for="tempo">Tempo (beta):</label>
-          <input id="tempo" type="number">
+          <input id="tempo" type="number" />
         </form>
-        <form id="export-options">
-          <h3>Export Dot Sheets</h3>
-          <input type="button" id="export" value="export" />
-        </form>
+        <div>
+          <form id="export-options">
+            <h3>Export Dot Sheets</h3>
+            <input type="button" id="export" value="export" />
+          </form>
+          <form id="file-io">
+            <h3>Save/Load Project</h3>
+            <label for="open-file">Open existing project: </label>
+            <input type="file" id="open-file" accept=".elia" />
+            <input type="button" id="save-file" value="Save to disk" />
+          </form>
+        </div>
       </div>
       <aside id="inspector">
         <h2>Inspector</h2>
@@ -90,7 +98,11 @@
           <input id="counts" name="counts" type="number" step="1" value="0" />
           <label for="measure">Measure</label>
           <input id="measure" name="measure" type="number" step="1" value="0" />
-          <input id="animate-next-set" type="button" value="play 1 set (beta)" />
+          <input
+            id="animate-next-set"
+            type="button"
+            value="play 1 set (beta)"
+          />
         </form>
       </aside>
     </main>

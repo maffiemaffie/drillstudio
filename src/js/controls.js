@@ -82,6 +82,12 @@ export const callbacks = {
   onAnimationStop: () => {
     console.log("end animation");
   },
+  onOpenFile: (file) => {
+    console.log("open file");
+  },
+  onSaveFile: () => {
+    console.log("save file")
+  }
 };
 
 export const setSelected = (player, setNumber) => {
@@ -176,6 +182,8 @@ const setBoundsColumns = (columns) => {
   const newProjectName = document.querySelector("#new-project-name");
   const newProjectButton = document.querySelector("#new-project-button");
   const animateNextSetButton = document.querySelector("#animate-next-set");
+  const openProjectFileButton = document.querySelector("#open-file");
+  const saveProjectFileButton = document.querySelector("#save-file");
 
   setSelected(null, 0);
 
@@ -305,6 +313,18 @@ const setBoundsColumns = (columns) => {
 
   exportButton.addEventListener("click", () => {
     callbacks.onExportButtonPressed();
+  });
+
+  openProjectFileButton.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      callbacks.onOpenFile(file);
+    }
+    e.target.value = null;
+  });
+
+  saveProjectFileButton.addEventListener("click", () => {
+    callbacks.onSaveFile();
   });
 
   projectControls.addEventListener("submit", (e) => {
