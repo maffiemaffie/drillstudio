@@ -4,8 +4,8 @@ export const callbacks = {
   onPlayerAdded: (playerData) => {
     console.log(Object.fromEntries(playerData.entries()));
   },
-  onPlayerEdited: (labels) => {
-    console.log(labels);
+  onPlayerEdited: (playerData) => {
+    console.log(playerData);
   },
   onRowsChanged: (rows) => {
     console.log(rows);
@@ -101,6 +101,7 @@ export const callbacks = {
 export const setSelected = (player, setNumber) => {
   const form = document.querySelector("#edit-player");
   const labelInput = document.querySelector("#edit-player input[name=label]");
+  const colorInput = document.querySelector("#edit-player input[name=color]");
   const fieldControls = document.querySelector("#field-controls");
 
   if (!player) {
@@ -114,6 +115,7 @@ export const setSelected = (player, setNumber) => {
   fieldControls.setAttribute("disabled", "");
 
   labelInput.value = player.label;
+  colorInput.value = player.color;
 
   setPosition(
     player.getLeftToRight(setNumber),

@@ -36,8 +36,10 @@ const drawLastGhost = (player, set, { ctx, config }, selected) => {
   const x = player.dots[set.number - 1].x;
   const y = player.dots[set.number - 1].y;
 
+  const color = `rgb(from ${player.color} r g b / 0.1)`
+
   ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-  ctx.strokeStyle = !selected ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)';
+  ctx.strokeStyle = !selected ? color : 'rgba(255, 0, 0, 0.1)';
   ctx.lineWidth = 0.15;
   ctx.font = `${config.playerSize}px monospace`;
   ctx.textAlign = 'center';
@@ -53,8 +55,10 @@ const drawNextGhost = (player, set, { ctx, config }, selected) => {
   const x = player.dots[set.number + 1].x;
   const y = player.dots[set.number + 1].y;
 
+  const color = `rgb(from ${player.color} r g b / 0.1)`
+
   ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-  ctx.strokeStyle = !selected ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 255, 0.1)';
+  ctx.strokeStyle = !selected ? color : 'rgba(0, 0, 255, 0.1)';
   ctx.lineWidth = 0.15;
   ctx.font = `${config.playerSize}px monospace`;
   ctx.textAlign = 'center';

@@ -1,16 +1,19 @@
 export class Player {
   dots = [];
+  color;
   label;
   constructor(label, sets, startingDot) {
     this.label = label;
     for (let i = 0; i < sets; i++) {
       this.dots.push({ x: startingDot.x, y: startingDot.y });
     }
+    this.color = "#000000";
   }
 
-  static fromJSON({ dots, label }) {
+  static fromJSON({ dots, label, color }) {
     const newPlayer = new Player(label, []);
     newPlayer.dots = dots;
+    newPlayer.color = color;
     return newPlayer;
   }
 
