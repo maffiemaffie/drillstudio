@@ -54,7 +54,9 @@ controls.callbacks.onPlayerAdded = (labels) => {
  */
 controls.callbacks.onPlayerEdited = (playerData) => {
   const label = playerData.get("label");
+  const color = playerData.get("color");
   model.renameSelectedPlayer(label);
+  model.recolorSelectedPlayer(color);
   update();
 };
 

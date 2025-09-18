@@ -197,6 +197,14 @@ export const renameSelectedPlayer = (label) => {
 };
 
 /**
+ * Changes the selected player's color
+ * @param {string} color the new color
+ */
+export const recolorSelectedPlayer = (color) => {
+  projectData.selected.color = color;
+}
+
+/**
  * Selects the nearest player to a specified coordinate, or none if no sufficiently close player.
  * @param {Number} x X-coordinate in grid space
  * @param {Number} y Y-coordinate in grid space

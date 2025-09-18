@@ -32,8 +32,10 @@ export const drawPlayerBetweenSets = (
 };
 
 const drawPlayerAt = (player, x, y, { ctx, config }, selected) => {
+  const color = `rgb(from ${player.color} r g b / 0.5)`
+
   ctx.fillStyle = "black";
-  ctx.strokeStyle = !selected ? "grey" : "red";
+  ctx.strokeStyle = !selected ? color : "red";
   ctx.lineWidth = 0.15;
   ctx.font = `${config.playerSize}px monospace`;
   ctx.textAlign = "center";
