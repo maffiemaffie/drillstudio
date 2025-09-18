@@ -66,6 +66,9 @@ export const callbacks = {
   onExportButtonPressed: () => {
     console.log("export button pressed");
   },
+  onExportDetailButtonPressed: () => {
+    console.log("export detail button pressed");
+  },
   onProjectOpened: (project) => {
     console.log(`project ${project} opened`);
   },
@@ -188,6 +191,7 @@ const setBoundsColumns = (columns) => {
     "#set-controls input[type=number]"
   );
   const exportButton = document.querySelector("#export");
+  const exportDetailButton = document.querySelector("#export-detail");
   const projectControls = document.querySelector("#project-controls");
   const projectSelect = document.querySelector("#project-select");
   const projectName = document.querySelector("#project-name");
@@ -326,6 +330,10 @@ const setBoundsColumns = (columns) => {
 
   exportButton.addEventListener("click", () => {
     callbacks.onExportButtonPressed();
+  });
+
+  exportDetailButton.addEventListener("click", () => {
+    callbacks.onExportDetailButtonPressed();
   });
 
   openProjectFileButton.addEventListener("change", (e) => {
