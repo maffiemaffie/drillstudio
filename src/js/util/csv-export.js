@@ -47,7 +47,9 @@ const playerToCSV = (player, sets) => {
     text += ",";
     if (next) text += set.counts;
     text += ",";
-    if (next) text += formatStepSize(5 * set.counts / distance) + " to 5";
+    if (next && distance == 0) text += "hold";
+    else
+      if (next) text += formatStepSize(5 * set.counts / distance) + " to 5";
     text += "\n";
   }
 

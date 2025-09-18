@@ -2,13 +2,14 @@ import * as model from "./model.js";
 import * as controls from "./controls.js";
 import * as viewer from "./viewer.js";
 import * as io from "./util/io.js";
-import * as pdfExport from "./util/export.js";
+import * as csvExport from "./util/csv-export.js";
+import * as detailExport from "./util/detail-export.js";
 import * as fileIO from "./util/file-io.js";
 
 export const update = () => {
   const data = model.getAll();
   io.updateProject(data);
-  viewer.updateCanvas(data);
+  viewer.updateCanvas(viewer.fieldCanvas, data);
 };
 
 // ===================================
@@ -238,7 +239,15 @@ controls.callbacks.onMetaDownKeyPressed = () => {
  * Export full project to dot sheets
  */
 controls.callbacks.onExportButtonPressed = () => {
-  pdfExport.exportCSV(model.getAll());
+  csvExport.exportCSV(model.getAll());
+};
+
+/**
+ * Export full project to detail sheets
+ */
+controls.callbacks.onExportDetailButtonPressed = async () => {
+  console.log("building pdf");
+  detailExport.detailExport(model.getAll());
 };
 
 /**
@@ -281,7 +290,7 @@ controls.callbacks.onProjectOpened = (name) => {
  */
 controls.callbacks.onProjectRenamed = (name) => {
   const oldName = model.getName();
-  
+
   model.renameProject(name);
   io.updateProject(model.getAll(), oldName);
   io.setOpenProject(name);
